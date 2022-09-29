@@ -1,0 +1,19 @@
+{
+  "name": "ireact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mini": "npx terser -c -m -o component.min.js -- component.js",
+    "watch": "npx babel --watch src --out-dir . --presets react-app/prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "terser": "^5.15.0"
+  }
+}
