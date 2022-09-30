@@ -3,7 +3,7 @@
  * @Author: sunsh
  * @Date: 2022-09-29 18:29:42
  * @LastEditors: sunsh
- * @LastEditTime: 2022-09-29 18:31:39
+ * @LastEditTime: 2022-09-30 16:07:19
  */
 import React from 'react';
 
@@ -43,7 +43,7 @@ class Clock extends React.Component {
   render() {
     return (
       <>
-        <div>Hello, clock</div>
+        <div>Hello, {this.props.name == null ? 'clock' : this.props.name}</div>
         <FormatTimer date={this.state.date} />
       </>
     );

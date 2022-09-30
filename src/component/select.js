@@ -3,7 +3,7 @@
  * @Author: sunsh
  * @Date: 2022-09-29 18:29:35
  * @LastEditors: sunsh
- * @LastEditTime: 2022-09-29 18:30:52
+ * @LastEditTime: 2022-09-30 10:28:47
  */
 
 import React from 'react';
@@ -15,6 +15,7 @@ class Input extends React.Component {
   }
 
   selectChange = (e) => {
+    this.props.onSelectChange(e.target.value);
     this.setState({
       value: e.target.value
     });
