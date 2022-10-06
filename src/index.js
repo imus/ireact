@@ -1,12 +1,11 @@
-
+import './index.css';
 import ReactDOM from 'react-dom/client';
-// import { ReactDOM } from 'react';
+import App from './App';
 
-
-const ele = <div>
-  <h1>hello React</h1>
-  <p>我是react</p>
-</div>;
+function Supre() {
+  console.log('我是root render');
+  return <App />;
+}
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
-root.render(ele);
+root.render(<Supre />);
