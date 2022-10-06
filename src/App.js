@@ -3,7 +3,7 @@
  * @Author: sunsh
  * @Date: 2022-09-29 11:49:27
  * @LastEditors: sunsh
- * @LastEditTime: 2022-09-30 15:52:29
+ * @LastEditTime: 2022-09-30 19:01:57
  */
 // import logo from './logo.svg';
 import './App.css';
@@ -11,6 +11,7 @@ import Clock from './component/clock';
 import Input from './component/select';
 import Children from './component/slot';
 import ClockPlus from './component/context';
+import { WrapperClock } from './component/ref';
 
 /* function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         我是slot
       </Children>
       <ClockPlus />
+      <WrapperClock />
     </div>
   );
 }

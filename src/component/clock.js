@@ -3,7 +3,7 @@
  * @Author: sunsh
  * @Date: 2022-09-29 18:29:42
  * @LastEditors: sunsh
- * @LastEditTime: 2022-09-30 16:07:19
+ * @LastEditTime: 2022-09-30 19:44:20
  */
 import React from 'react';
 
@@ -43,7 +43,11 @@ class Clock extends React.Component {
   render() {
     return (
       <>
-        <div>Hello, {this.props.name == null ? 'clock' : this.props.name}</div>
+        <div 
+          style={{cursor: 'pointer'}}
+          onClick={() => this.props.onClickClock(this.state.date)}>
+          Hello, {this.props.name == null ? 'clock' : this.props.name}
+        </div>
         <FormatTimer date={this.state.date} />
       </>
     );
