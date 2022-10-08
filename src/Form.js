@@ -3,9 +3,10 @@
  * @Author: sunsh
  * @Date: 2022-10-08 17:31:49
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-08 18:52:30
+ * @LastEditTime: 2022-10-09 00:01:32
  */
 import React, { useState } from 'react';
+import formClass from './Form.module.css';
 
 function Form(props) {
   const [form, setForm] = useState({
@@ -43,7 +44,7 @@ function Form(props) {
   return ( 
     <form onSubmit={onSubmit}>
     {/* 表单受React状态控制 */}
-      <input onChange={onContentChange} value={form.content} type={'text'}></input>
+      <input className={formClass.bold} onChange={onContentChange} value={form.content} type={'text'}></input>
       <input onChange={onNumChange} value={form.num} type={'number'}></input>
       <input  onChange={onDateChange}value={form.date} type={'date'}></input>
       <button type='submit' >submit</button>
