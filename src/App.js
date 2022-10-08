@@ -3,9 +3,12 @@
  * @Author: sunsh
  * @Date: 2022-10-06 18:35:37
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-07 00:30:29
+ * @LastEditTime: 2022-10-08 19:26:26
  */
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Form from "./Form";
+import Confirm from "./components/Confirm";
+
 export default function App() {
   console.log('app执行完了');
   const [count, setCount] = useState(18);
@@ -22,16 +25,20 @@ export default function App() {
   }
 
   function btnClick() {
+    // const ref = useRef(); error: HOOK需要在函数组件或者自定义组件调用
     setTimeout(() => {
       setCount(prevState => prevState + 1);
     }, 1000);
   }
 
-
+  const pRef = useRef();
+  console.log(pRef);
   return (
     <>
+      <Form />
+      <Confirm>我是confirm slot, 我被portal传送了</Confirm>
       <h1 onClick={handleClick}>halo react{count},快速点我2次可能获取不到正确的count值</h1>
-      <p>{obj.name}{obj.age}</p>
+      <p ref={pRef}>{obj.name}{obj.age}</p>
       <button onClick={btnClick}>点我正确+1</button>
     </>
   );
