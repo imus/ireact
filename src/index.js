@@ -1,4 +1,5 @@
 import './index.css';
+import React from 'react'
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
@@ -8,4 +9,6 @@ function Supre() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
-root.render(<Supre />);
+root.render(<React.StrictMode>
+  <Supre />
+</React.StrictMode>);

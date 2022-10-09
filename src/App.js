@@ -3,11 +3,12 @@
  * @Author: sunsh
  * @Date: 2022-10-06 18:35:37
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-08 19:26:26
+ * @LastEditTime: 2022-10-09 00:11:39
  */
 import { useState, useRef } from "react";
 import Form from "./Form";
 import Confirm from "./components/Confirm";
+import Fragment from "./components/Fragment";
 
 export default function App() {
   console.log('app执行完了');
@@ -34,12 +35,12 @@ export default function App() {
   const pRef = useRef();
   console.log(pRef);
   return (
-    <>
+    <Fragment>
       <Form />
       <Confirm>我是confirm slot, 我被portal传送了</Confirm>
       <h1 onClick={handleClick}>halo react{count},快速点我2次可能获取不到正确的count值</h1>
       <p ref={pRef}>{obj.name}{obj.age}</p>
       <button onClick={btnClick}>点我正确+1</button>
-    </>
+    </Fragment>
   );
 }
