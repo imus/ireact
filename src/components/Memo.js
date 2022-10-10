@@ -3,14 +3,14 @@
  * @Author: sunsh
  * @Date: 2022-10-10 10:41:50
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-10 11:01:56
+ * @LastEditTime: 2022-10-10 12:09:03
  */
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
-function Sub() {
+function Sub(props) {
   console.log('memo-sub渲染了');
   return (
-    <div>memo-sub</div>
+    <div onClick={props.addState}>memo-sub</div>
   );
 }
 
@@ -20,14 +20,19 @@ function Memo() {
   console.log('memo渲染了');
   const [state, setState] = useState(0);
 
-  function handleClick() {
+  // function handleClick() {
+  //   setState(prev => ++prev);
+  // }
+
+  const handleClick = useCallback(() => {
     setState(prev => ++prev);
-  }
+  }, []); // 类似useEffect; 回调在组件第一次执行时创建一次
 
   return (
     <React.Fragment>
       <div onClick={handleClick}>点我,memo, {state}</div>
-      <Hsub />
+      {/* 此时，Sub也会重新执行，因为该组从新render,handleClick也会重新创建，导致addState变化：使用useCallback解决回调变化 */}
+      <Hsub addState={handleClick} />
     </React.Fragment>
     );
 }
