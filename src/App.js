@@ -3,13 +3,15 @@
  * @Author: sunsh
  * @Date: 2022-10-06 18:35:37
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-09 18:58:46
+ * @LastEditTime: 2022-10-10 10:46:16
  */
 import { useState, useRef } from "react";
 import Form from "./Form";
 import Confirm from "./components/Confirm";
 import Fragment from "./components/Fragment";
 import Effect from "./components/Effect";
+import Reducer from "./components/Reducer";
+import Memo from "./components/Memo";
 
 export default function App() {
   console.log('app执行完了');
@@ -37,6 +39,8 @@ export default function App() {
   console.log(pRef);
   return (
     <Fragment>
+      <Memo />
+      <Reducer />
       <Effect />
       <Form />
       <Confirm>我是confirm slot, 我被portal传送了</Confirm>
