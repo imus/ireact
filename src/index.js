@@ -1,14 +1,13 @@
-import './index.css';
-import React from 'react'
+/*
+ * @Description: 
+ * @Author: sunsh
+ * @Date: 2022-10-12 17:21:56
+ * @LastEditors: sunsh
+ * @LastEditTime: 2022-10-14 10:05:55
+ */
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from '../src/App';
 
-function Supre() {
-  console.log('我是root render');
-  return <App />;
-}
-
-const root = ReactDOM.createRoot(document.getElementById('app'));
-root.render(<React.StrictMode>
-  <Supre />
-</React.StrictMode>);
+const root  = ReactDOM.createRoot(document.getElementById('app'));
+root.render(<App />);
