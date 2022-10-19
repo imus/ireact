@@ -3,64 +3,37 @@
  * @Author: sunsh
  * @Date: 2022-10-12 17:24:26
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-17 14:53:10
+ * @LastEditTime: 2022-10-19 11:17:08
  */
-import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { editName } from './store/articleSlice';
-import { addCategory } from './store/categorySlice'
-import { useGetCategoriesQuery } from "./store/cateoryApi";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import ArticleListPage from "./pages/ArticleListPage";
+import LoginPage from "./pages/LoginPage";
+import AboutPage from "./pages/AboutPage";
+import AdminPage from "./pages/adminPage/AdminPage";
+import NeedAuth, { Auth } from "./components/Auth/NeedAuth";
+import useAutoLogout from "./hooks/useAutoLogout";
+// const EnAdminPage = NeedAuth(<AdminPage/>);
 
-function App () {
-  const dispatch = useDispatch();
-  const articleTitle = useSelector(state => state.article.title);
-  const categoryList = useSelector(state => state.category);
-  const [categoryName, setCategoryName] = useState("");
-  const res = useGetCategoriesQuery();
-  console.log(res);
+function App() {
   
-
-  const handleClick = e => {
-    dispatch(editName('我是新的标题'));
-  }
-
-  const inputChangeHandle = useCallback(
-    (e) => {
-      setCategoryName(state => e.target.value);
-    },
-    [],
-  )
-
-  function addCategoryHandle(e) {
-    if (e.type === 'keydown' && e.keyCode !== 13) {
-      return;
-    }
-    dispatch(addCategory({name: categoryName}));
-    setCategoryName('');
-  }
-  
+  useAutoLogout();
 
   return (
-    <div onClick={ handleClick }>
-      我是app and {articleTitle}
-      <div>
-        <label>
-          <span>分类: </span>
-          <input type={"text"} onKeyDown={addCategoryHandle} onChange={inputChangeHandle} value={ categoryName } />
-          <div>{ categoryName }</div>
-        </label>
-        <button onClick={addCategoryHandle}>增加分类</button>
-        
-        <ul>
-          {
-            categoryList.map((category, index) => (
-              <li key={index}>{category.name}</li>
-            ))
-          }
-        </ul>
-      </div>
+    <div>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<ArticleListPage/>}></Route>
+          <Route path="/auth" element={<LoginPage/>}></Route>
+          <Route path="/about" element={<AboutPage/>}></Route>
+          {/* <Route path="/admin" element={ <EnAdminPage /> }></Route> */}
+          <Route path="/admin" element={ <Auth><AdminPage></AdminPage></Auth> }></Route>
+          {/* TODO 不存在的路径重定向， store持久化 */}
+          <Route path="*" element={ <ArticleListPage /> }></Route>
+        </Routes>
+      </Layout>
     </div>
-    );
+  );
 }
 
 export default App;

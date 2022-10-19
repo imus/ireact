@@ -3,21 +3,39 @@
  * @Author: sunsh
  * @Date: 2022-10-15 13:44:14
  * @LastEditors: sunsh
- * @LastEditTime: 2022-10-17 10:19:52
+ * @LastEditTime: 2022-10-19 10:51:22
  */
 import { configureStore } from "@reduxjs/toolkit";
-import { articleReducer } from "./articleSlice";
-import { categoryReducer } from "./categorySlice";
-
-console.log(articleReducer);
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { articleReducer } from "./slice/articleSlice";
+import { categoryReducer } from "./slice/categorySlice";
+// RTKQ
+import articleApi from "./api/articleApi";
+import categoryApi from "./api/cateoryApi";
+import authApi from "./api/authApi";
+import authSlice from "./slice/authSlice";
+// import { useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 const store = configureStore({
   reducer: {
     article: articleReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    auth: authSlice.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
+    [articleApi.reducerPath]: articleApi.reducer,
+    [authApi.reducerPath]: authApi.reducer
+
   },
+  // TODO 看文档怎么理解middleware。 这里是为了使用RTKQ的缓存
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware().concat(categoryApi.middleware, authApi.middleware)
+  }
   // preloadedState: null
 });
+
+// TODO 功能是否是store 中state更新后，通知组件重新渲染
+setupListeners(store.dispatch);
 
 export default store;
 
